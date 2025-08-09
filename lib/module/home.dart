@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bird_detector/animal_classifier.dart';
+import 'package:bird_detector/module/ai_image_module.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -61,6 +62,18 @@ class _HomeState extends State<Home> {
                       'Prediction: $_predictionResult',
                       style: const TextStyle(fontSize: 16),
                     ),
+                    ElevatedButton(onPressed: () {
+                      showModalBottomSheet(
+                      context: context,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                      ),
+                      builder: (context) =>  ImageTextBottomSheet(
+                        image: FileImage(File(_pickedImage!.path)),
+                        text: 'This is a sample text.',
+                      ),
+                    );
+                    } , child: const Text('Let\'s try with AI'))
                 ],
               ),
           ],
